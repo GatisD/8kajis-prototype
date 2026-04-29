@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+
+<html class="light" lang="lv"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>8kajis.lv | Visas spēles</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "surface-container-lowest": "#ffffff",
+                    "tertiary-fixed": "#ffdad2",
+                    "tertiary": "#a03b21",
+                    "inverse-on-surface": "#edf2ef",
+                    "on-tertiary-container": "#fffbff",
+                    "on-error-container": "#93000a",
+                    "primary-fixed": "#8cf5e4",
+                    "primary": "#00685d",
+                    "surface-tint": "#006a60",
+                    "surface-container": "#eaefec",
+                    "primary-container": "#008376",
+                    "secondary-container": "#ffab69",
+                    "on-primary": "#ffffff",
+                    "on-primary-container": "#f4fffb",
+                    "error-container": "#ffdad6",
+                    "on-background": "#171d1b",
+                    "on-primary-fixed": "#00201c",
+                    "outline-variant": "#bcc9c6",
+                    "secondary-fixed-dim": "#ffb780",
+                    "on-secondary-fixed-variant": "#6f3800",
+                    "tertiary-fixed-dim": "#ffb4a2",
+                    "inverse-surface": "#2c3130",
+                    "secondary": "#8e4e14",
+                    "on-surface-variant": "#3d4947",
+                    "background": "#f6faf8",
+                    "surface-dim": "#d6dbd9",
+                    "surface": "#f6faf8",
+                    "on-secondary-fixed": "#2f1400",
+                    "surface-variant": "#dfe4e1",
+                    "outline": "#6d7a77",
+                    "on-tertiary-fixed-variant": "#83260e",
+                    "inverse-primary": "#6fd8c8",
+                    "surface-bright": "#f6faf8",
+                    "primary-fixed-dim": "#6fd8c8",
+                    "tertiary-container": "#c05237",
+                    "surface-container-high": "#e4e9e7",
+                    "on-secondary-container": "#783d01",
+                    "on-primary-fixed-variant": "#005048",
+                    "surface-container-low": "#f0f5f2",
+                    "on-surface": "#171d1b",
+                    "on-error": "#ffffff",
+                    "surface-container-highest": "#dfe4e1",
+                    "on-tertiary-fixed": "#3c0700",
+                    "secondary-fixed": "#ffdcc4",
+                    "on-tertiary": "#ffffff",
+                    "on-secondary": "#ffffff",
+                    "error": "#ba1a1a"
+            },
+            "borderRadius": {
+                    "DEFAULT": "12px",
+                    "lg": "12px",
+                    "xl": "16px",
+                    "full": "9999px"
+            },
+            "spacing": {
+                    "xxl": "80px",
+                    "sm": "8px",
+                    "xs": "4px",
+                    "lg": "24px",
+                    "gutter": "24px",
+                    "margin": "32px",
+                    "unit": "8px",
+                    "xl": "48px",
+                    "md": "16px"
+            },
+            "fontFamily": {
+                    "plus-jakarta": ["Plus Jakarta Sans", "sans-serif"],
+                    "label-bold": ["Plus Jakarta Sans"],
+                    "display-lg": ["Plus Jakarta Sans"],
+                    "label-sm": ["Plus Jakarta Sans"],
+                    "body-md": ["Plus Jakarta Sans"],
+                    "headline-md": ["Plus Jakarta Sans"],
+                    "headline-lg": ["Plus Jakarta Sans"],
+                    "body-lg": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .product-card:hover .cart-button {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .wave-divider {
+            mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 320'%3E%3Cpath fill='%23000' fill-opacity='1' d='M0,160L48,176C96,192,192,224,288,213.3C384,203,480,149,576,149.3C672,149,768,203,864,218.7C960,235,1056,213,1152,186.7C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z'%3E%3C/path%3E%3C/svg%3E");
+            mask-size: cover;
+            mask-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-plus-jakarta">
+<!-- TopNavBar -->
+<header class="bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-50 border-b border-teal-100/20 shadow-[0_10px_30px_-15px_rgba(38,70,83,0.1)]">
+<div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+<div class="text-2xl font-black text-teal-700 dark:text-teal-300 italic">8kajis.lv</div>
+<nav class="hidden md:flex gap-8 items-center font-plus-jakarta text-sm font-semibold tracking-tight">
+<a class="text-teal-600 border-b-2 border-teal-500 pb-1" href="#">Shop All</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-500 transition-all duration-300" href="#">New Arrivals</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-500 transition-all duration-300" href="#">Best Sellers</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-teal-500 transition-all duration-300" href="#">Age Groups</a>
+</nav>
+<div class="flex items-center gap-4">
+<div class="relative hidden lg:block">
+<input class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full text-sm focus:ring-2 focus:ring-primary-container w-64" placeholder="Meklēt..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-2 text-outline" data-icon="search">search</span>
+</div>
+<button class="p-2 hover:bg-teal-50/50 rounded-lg transition-all active:scale-90"><span class="material-symbols-outlined" data-icon="language">language</span></button>
+<button class="p-2 hover:bg-teal-50/50 rounded-lg transition-all active:scale-90"><span class="material-symbols-outlined" data-icon="favorite">favorite</span></button>
+<button class="p-2 hover:bg-teal-50/50 rounded-lg transition-all active:scale-90 relative">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+<span class="absolute top-0 right-0 bg-secondary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full">3</span>
+</button>
+<button class="p-2 hover:bg-teal-50/50 rounded-lg transition-all active:scale-90"><span class="material-symbols-outlined" data-icon="person">person</span></button>
+</div>
+</div>
+</header>
+<!-- Hero Banner -->
+<section class="h-[500px] bg-primary-fixed/20 relative overflow-hidden flex items-center">
+<div class="max-w-7xl mx-auto px-6 w-full flex flex-col md:flex-row items-center justify-between z-10">
+<div class="max-w-xl">
+<h1 class="font-display-lg text-display-lg text-primary mb-md">Visas spēles</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Atklāj rotaļlietas, kas attīsta bērna radošumu un kognitīvās spējas caur aizraujošu spēli.</p>
+<button class="mt-xl px-xl py-md bg-primary text-on-primary rounded-full font-label-bold hover:shadow-lg transition-shadow">Skatīt jaunumus</button>
+</div>
+<div class="hidden md:block w-[450px]">
+<img alt="Wooden toys" class="rounded-2xl shadow-xl rotate-3" data-alt="High-quality handcrafted wooden educational building blocks on a soft teal background with warm natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwHCyojjAusQ0VaDM0i4Yxhl-oVLBIdq0HxDpqd5G_gfEGOqEmRKLPbXDb-v7nbMGKhb0_wbQNIri1Ukv46XWFEsVcB8QBR7_tJBRLEQoQj4B_tu1EUaC--5tgg_SJlM41qxDvf-u74NtbAIbMbyPiBe8Sv1s_JPZXxCFoB1ghX6SAcjYi5h9LOZUZgisUvY5OUX0KlVwwD1cxd0_xDGVv8h94qWoiagJAY3A7rLFtqy2V8HkgukEzWufcZMuAnQ5fuTQSZ-_ASw"/>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-24 bg-background wave-divider"></div>
+</section>
+<!-- Breadcrumbs -->
+<nav class="max-w-7xl mx-auto px-6 py-8">
+<ol class="flex text-sm text-outline gap-2">
+<li class="hover:text-primary transition-colors cursor-pointer">Sākums</li>
+<li>/</li>
+<li class="text-on-surface font-semibold">Visas spēles</li>
+</ol>
+</nav>
+<!-- Main Content -->
+<main class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-[280px_1fr] gap-gutter mb-xxl">
+<!-- Left Sidebar (Sticky) -->
+<aside class="space-y-xl sticky top-24 self-start">
+<div>
+<h3 class="font-label-bold text-label-bold text-on-surface mb-md">Vecuma grupa</h3>
+<div class="flex flex-col gap-sm">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary transition-colors">1–3 gadi</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary transition-colors">4–6 gadi</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary transition-colors">6+ gadi</span>
+</label>
+</div>
+</div>
+<div>
+<h3 class="font-label-bold text-label-bold text-on-surface mb-md">Kategorija</h3>
+<div class="flex flex-col gap-sm">
+<button class="text-left py-1 text-primary font-semibold text-body-md">Spēles</button>
+<button class="text-left py-1 text-on-surface-variant hover:text-primary transition-colors text-body-md">STEM</button>
+<button class="text-left py-1 text-on-surface-variant hover:text-primary transition-colors text-body-md">Metodiskie</button>
+<button class="text-left py-1 text-on-surface-variant hover:text-primary transition-colors text-body-md">Lielizmēra</button>
+<button class="text-left py-1 text-on-surface-variant hover:text-primary transition-colors text-body-md">Sensorā telpa</button>
+</div>
+</div>
+<div>
+<h3 class="font-label-bold text-label-bold text-on-surface mb-md">Cena</h3>
+<div class="px-2">
+<input class="w-full accent-primary" max="200" min="0" type="range"/>
+<div class="flex justify-between mt-sm text-label-sm text-outline">
+<span>0€</span>
+<span>200€</span>
+</div>
+</div>
+</div>
+<div>
+<h3 class="font-label-bold text-label-bold text-on-surface mb-md">Zīmols</h3>
+<div class="flex flex-col gap-sm">
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary transition-colors">Beleduc</span>
+</label>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary transition-colors">8kajis</span>
+</label>
+</div>
+</div>
+<div>
+<h3 class="font-label-bold text-label-bold text-on-surface mb-md">Pieejamība</h3>
+<label class="flex items-center gap-2 cursor-pointer group">
+<input class="rounded border-outline-variant text-secondary focus:ring-secondary" type="checkbox"/>
+<span class="text-body-md group-hover:text-primary transition-colors">Ir noliktavā</span>
+</label>
+</div>
+</aside>
+<!-- Right Content -->
+<section>
+<!-- Sorting & Count -->
+<div class="flex flex-col sm:flex-row justify-between items-center mb-lg gap-md bg-surface-container-low p-md rounded-xl">
+<span class="font-body-md text-on-surface-variant">Rādīt 240 produkti</span>
+<div class="flex items-center gap-md">
+<span class="text-label-sm text-outline whitespace-nowrap">Sakārtot pēc:</span>
+<select class="bg-transparent border-none focus:ring-0 font-label-bold text-primary cursor-pointer pr-8">
+<option>Populārākie</option>
+<option>Jaunākie</option>
+<option>Cena ↑</option>
+<option>Cena ↓</option>
+</select>
+</div>
+</div>
+<!-- Grid -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-lg">
+<!-- Product 1 -->
+<div class="product-card group bg-surface-container-lowest rounded-xl p-md border border-teal-100/30 shadow-[0_4px_20px_-5px_rgba(38,70,83,0.08)] hover:shadow-xl transition-all relative">
+<div class="relative mb-md bg-slate-100 rounded-lg aspect-square overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Educational wooden puzzle with colorful geometric shapes for spatial reasoning, minimalist composition" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOLSw4OXfEGEx58KbO5T6LXmQTufluiESORSmDSPqNKCxp0KBL5nvIdjThUqOw9_BQD8Ktu1PGN7wV2hEzYjchSY0ZRSj8ztCtSUV4VjJ6IDNhGn6DxyGTP3sY5dclWgLHTfL24r7YM2-GoDlMSEHO6krLct4jIfhY7uUwIfBi8vJVUifgDfFezqeWoDo4BM5SQKTpY_GMI1Jb8zw3IVvZoRnN9pYT8GhrYwO006uXWnuFsuFn4t6j7fczH1h4_CPFD6k4w8gkcA"/>
+<button class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-sm bg-secondary-container/20 text-secondary">Beleduc</span>
+<h3 class="font-headline-md text-sm mb-sm line-clamp-2 h-10">Krāsu kodi telpiskajai uztverei</h3>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline-md text-lg text-on-surface">34,95 €</span>
+<span class="text-xs text-outline line-through">42,00 €</span>
+</div>
+<button class="cart-button opacity-0 transform translate-y-2 w-full py-2 bg-secondary text-on-secondary rounded-lg font-label-bold transition-all duration-300">Pievienot grozam</button>
+</div>
+<!-- Product 2 -->
+<div class="product-card group bg-surface-container-lowest rounded-xl p-md border border-teal-100/30 shadow-[0_4px_20px_-5px_rgba(38,70,83,0.08)] hover:shadow-xl transition-all relative">
+<div class="relative mb-md bg-slate-100 rounded-lg aspect-square overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Tactile wooden animal figures of various sizes for sensory development, soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuIQ0ThmDdFjiFqSmco7O6Dh7fgk0DGNprldFs7rvk_wYhgypSu1gNCtOw31WoLikSKCeoPqF2G63eCh65zimzk8dNdUupKPpY26Eh0Andwe89PaI_NC-xq-WfpelfYgkW7lddGpqIoyXy9MyoAd89rmTbDc7BmY7LQ4QXTNeYvWGDEI16qMfxGahsYv57OZyDS5CPiBVM0Udhh2kJZS3GGpmt_BgVf2v6cSTFArJfwMy8duOy_Zwn8hbPX65HrptfCohPh53p5g"/>
+<button class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-sm bg-primary-container/20 text-primary">8kajis</span>
+<h3 class="font-headline-md text-sm mb-sm line-clamp-2 h-10">Neirostimulējoša spēle dzīvnieki un izmēri</h3>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline-md text-lg text-on-surface">28,50 €</span>
+</div>
+<button class="cart-button opacity-0 transform translate-y-2 w-full py-2 bg-secondary text-on-secondary rounded-lg font-label-bold transition-all duration-300">Pievienot grozam</button>
+</div>
+<!-- Product 3 -->
+<div class="product-card group bg-surface-container-lowest rounded-xl p-md border border-teal-100/30 shadow-[0_4px_20px_-5px_rgba(38,70,83,0.08)] hover:shadow-xl transition-all relative">
+<div class="relative mb-md bg-slate-100 rounded-lg aspect-square overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Set of colorful wooden geometric forms on a light gray surface, studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBi78ZZUYkemEscVLsyjtQykIoKa0eL1mZ9UBgw66gXEbAVh6p02kTPRTORBa_qpdkbWlXWjugtt9JIvebouMC1sdYuPtMXUao3EQKNyyH4aFwyXv7eSirKb1b9dCNfAl6AE7Om85hvw8VSHB91ojll9X0RtOZFcQ-oAbBCZ9pW9aF753TGTjCYpYBO0ncqihtRb6oQFre0I2RlXO9eUsiyge0fBC-N3ui3RF2s3GAPP2_BOZolzt9PnmFTEjiWyu6M4NfPwnmhIQ"/>
+<button class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-sm bg-primary-container/20 text-primary">8kajis</span>
+<h3 class="font-headline-md text-sm mb-sm line-clamp-2 h-10">Neirostimulējoša spēle krāsas un formas</h3>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline-md text-lg text-on-surface">26,00 €</span>
+</div>
+<button class="cart-button opacity-0 transform translate-y-2 w-full py-2 bg-secondary text-on-secondary rounded-lg font-label-bold transition-all duration-300">Pievienot grozam</button>
+</div>
+<!-- Product 4 -->
+<div class="product-card group bg-surface-container-lowest rounded-xl p-md border border-teal-100/30 shadow-[0_4px_20px_-5px_rgba(38,70,83,0.08)] hover:shadow-xl transition-all relative">
+<div class="relative mb-md bg-slate-100 rounded-lg aspect-square overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Large scale floor game with submarine illustration for children, bright and cheerful" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDtoJJWyGXhHeQ7GCNWJRBW0hNZNJpM5endMDZzVNQd-D6hObgwQ-Xq6uYGNarN_50eEt7BzEw-sYPVL04pUFXSVtCdjKdDHyt4dBh_-Di0nfJzeDsG8FScjDYbY35_JYgGSzYktKkFoOIVw71EsaCu48erJK_Qo1Cl3ktKf6dnzs1aiANVtvUI5xRkdccSinvM43Uebfw_v-3Ep7a7eQJj8gzrkbB50_bBFb8TFqTxNgyDtdN9KsSM46sHYO92IJXXucuv2UvJTA"/>
+<button class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-sm bg-secondary-container/20 text-secondary">Beleduc</span>
+<h3 class="font-headline-md text-sm mb-sm line-clamp-2 h-10">XXL spēle Priecīgā zemūdene</h3>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline-md text-lg text-on-surface">115,00 €</span>
+</div>
+<button class="cart-button opacity-0 transform translate-y-2 w-full py-2 bg-secondary text-on-secondary rounded-lg font-label-bold transition-all duration-300">Pievienot grozam</button>
+</div>
+<!-- 5 to 12 placeholder items with same structure -->
+<!-- Product 5 -->
+<div class="product-card group bg-surface-container-lowest rounded-xl p-md border border-teal-100/30 shadow-[0_4px_20px_-5px_rgba(38,70,83,0.08)] hover:shadow-xl transition-all relative">
+<div class="relative mb-md bg-slate-100 rounded-lg aspect-square overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Sensory discovery toy highlighting the 5 senses for kids, clean studio shot" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAoYCXAbsIPt-_IbsUdG_yTfxXc0h28OzapsAWwjOZWjH48pM8T7d5ujdWyvXvFpwTOZETCv4_GdKjJyRdcjP9HAwumb2MRqAXryO5vCFNU7j1PqAeRiRj1AviKULsFcw0-IolvHitkzq3Jip2phxHSA1MPBYFL1sSgZyjakI-ncxOH9GxgGQZ1vcibnO4dWGkimSxHH4dm0nGYcmlbfH3b_N7OtNrQYi6G0vGdPCgi_FIaxlYVaw8_IN9n5kjw6mp_shdYyZLQJw"/>
+<button class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-sm bg-primary-container/20 text-primary">8kajis</span>
+<h3 class="font-headline-md text-sm mb-sm line-clamp-2 h-10">Misija atklāj 5 maņas</h3>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline-md text-lg text-on-surface">32,90 €</span>
+</div>
+<button class="cart-button opacity-0 transform translate-y-2 w-full py-2 bg-secondary text-on-secondary rounded-lg font-label-bold transition-all duration-300">Pievienot grozam</button>
+</div>
+<!-- Product 6 -->
+<div class="product-card group bg-surface-container-lowest rounded-xl p-md border border-teal-100/30 shadow-[0_4px_20px_-5px_rgba(38,70,83,0.08)] hover:shadow-xl transition-all relative">
+<div class="relative mb-md bg-slate-100 rounded-lg aspect-square overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="STEM wall panel made of high quality light wood with gears and interactive elements" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK8iUyOjNBeWyM1SW_4Y2RhrpzuYedexR8HTEHzIpzDvF0AhRJxXoQ__RYg42SI5f_rlrRy9E5CCq3QH8FGzErsmBVybeIShFKnNtJi025jw2MF0Dtrio6D2kSBEE_T6gpgwoK8BqUIJIyuCwVZn6VRLG8ijufze45DToC-WfTcvf-r8vbK3UdmlElCNZt16vl9wymJBH2VSo5gVj-jfDy3s2S7a51E7acxt8PNKqxxJyiih-Q7ltDH8mxkzkraMhittaqMwEpTw"/>
+<button class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-sm bg-secondary-container/20 text-secondary">Beleduc</span>
+<h3 class="font-headline-md text-sm mb-sm line-clamp-2 h-10">STEM koka sienas panelis</h3>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline-md text-lg text-on-surface">189,00 €</span>
+</div>
+<button class="cart-button opacity-0 transform translate-y-2 w-full py-2 bg-secondary text-on-secondary rounded-lg font-label-bold transition-all duration-300">Pievienot grozam</button>
+</div>
+<!-- Product 7 -->
+<div class="product-card group bg-surface-container-lowest rounded-xl p-md border border-teal-100/30 shadow-[0_4px_20px_-5px_rgba(38,70,83,0.08)] hover:shadow-xl transition-all relative">
+<div class="relative mb-md bg-slate-100 rounded-lg aspect-square overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Weighted sensory blanket with ball filling for therapeutic use, soft texture and calming colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwBHxtGzmJ6TE-u9gh-lKNmSuVfjLXWQdkTj6Xy05XhZu3vOkydjtRiZPO187PKx9zOzRcBFcjXs44t9UMmjms4AeHZm-3h23Qmw9ZdWT4Kx7arBouO2m-Ycep6Hs_nwkqaw_DjbQK9Yie2KrK3HFuRe045x-L1pZj9ICwAw8wxM-SYnr8rC1KMl80XhGyJPrTu_huwXO2o257xnxm2J8P9qt_kajQmLkDM_1WYKYFuJwWAN4yz62XyxpIuWjxsmULj3HCc8fWPw"/>
+<button class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-sm bg-primary-container/20 text-primary">8kajis</span>
+<h3 class="font-headline-md text-sm mb-sm line-clamp-2 h-10">Sensorās telpas bumbu sega</h3>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline-md text-lg text-on-surface">145,00 €</span>
+</div>
+<button class="cart-button opacity-0 transform translate-y-2 w-full py-2 bg-secondary text-on-secondary rounded-lg font-label-bold transition-all duration-300">Pievienot grozam</button>
+</div>
+<!-- Product 8 -->
+<div class="product-card group bg-surface-container-lowest rounded-xl p-md border border-teal-100/30 shadow-[0_4px_20px_-5px_rgba(38,70,83,0.08)] hover:shadow-xl transition-all relative">
+<div class="relative mb-md bg-slate-100 rounded-lg aspect-square overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Water play table for kids with various water flow accessories, outdoors setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBOTlL2TEwJEhayeTq5FpjMPQdOr1J7MqqlDx0wU4WEdSyYI17uEBA3ThXvo0vDHWpBOrMV8hw_3qtw-Xsl8ZqkgWdnJz0Z8h5Qgl41p4AYy-xSOogFS0gcka0OlPYW3zzD95mYFLKdK7LMjAGPiu3G43yi6O2LAGfw3g7boNXI2nHUthk6nzct5DCo2MjlU_TDnwdrQKsii31SEa2Sl6J7_7fbaa91hVU50UVfYR79gBcvUtWR-a3XxJ9uEgo2dsd1cZtnvcK1yg"/>
+<button class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-sm bg-secondary-container/20 text-secondary">Beleduc</span>
+<h3 class="font-headline-md text-sm mb-sm line-clamp-2 h-10">Ūdens galda komplekts</h3>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline-md text-lg text-on-surface">78,00 €</span>
+<span class="text-xs text-outline line-through">95,00 €</span>
+</div>
+<button class="cart-button opacity-0 transform translate-y-2 w-full py-2 bg-secondary text-on-secondary rounded-lg font-label-bold transition-all duration-300">Pievienot grozam</button>
+</div>
+<!-- Product 9 -->
+<div class="product-card group bg-surface-container-lowest rounded-xl p-md border border-teal-100/30 shadow-[0_4px_20px_-5px_rgba(38,70,83,0.08)] hover:shadow-xl transition-all relative">
+<div class="relative mb-md bg-slate-100 rounded-lg aspect-square overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Intricate wooden logic cube puzzle with various mechanical parts to solve" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXLxuF1X3OWaqwbkOFJmbtnI_KxmDE_nC6crsCHLF6eKTwWc8Wzf0o3NwCTp8NdPJKo6nZQtT1W4Wj_DZm23fa5tfdyFuDWoJJv6zJi59h4OXbbE72fkjqa5WKfN_icAruLK0NiFF5PvOjKoXWnZ1sX814o7H7Vc5xy4NkfZThpM9_vev8wrGbtNao3dfX6niNQHfj4ctdVwR3_qDb2UjiKzCYtefNZnGuMdiotFZ6WQtgbdFEn4Pt5Q_8kcH92h3xXgfB56MuRQ"/>
+<button class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-sm bg-secondary-container/20 text-secondary">Beleduc</span>
+<h3 class="font-headline-md text-sm mb-sm line-clamp-2 h-10">Loģikas kuba mīkla</h3>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline-md text-lg text-on-surface">19,95 €</span>
+</div>
+<button class="cart-button opacity-0 transform translate-y-2 w-full py-2 bg-secondary text-on-secondary rounded-lg font-label-bold transition-all duration-300">Pievienot grozam</button>
+</div>
+<!-- Product 10 -->
+<div class="product-card group bg-surface-container-lowest rounded-xl p-md border border-teal-100/30 shadow-[0_4px_20px_-5px_rgba(38,70,83,0.08)] hover:shadow-xl transition-all relative">
+<div class="relative mb-md bg-slate-100 rounded-lg aspect-square overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Sound recognition game for children with various musical elements and auditory puzzles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpfJXvdBfj9V-z8aqc1dpWFBWrUEo31xFGLESXa6WN6-z0yfhq9Bx9x2boOSwLbHdwVapJrJJf7V5PKQuepOZ2WWh9JTmYifhxDzkEQCZIkPpMbrHYGnv9ku3oSBO6y-E7-pf9khfaa2-TLg2QP5Xk2JZYy3jbP1LQgjVZfNtCqdfcXqxC2F58gyfGaN4_YJuNPUfZYjSHhN10DdKU8x7y2JHXXjrWGJWd25eMfBBEi8AY1nZvO53nfZIECN2dqCXSX4TqMbDxfg"/>
+<button class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-sm bg-primary-container/20 text-primary">8kajis</span>
+<h3 class="font-headline-md text-sm mb-sm line-clamp-2 h-10">Skaņu izziņas spēle</h3>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline-md text-lg text-on-surface">42,50 €</span>
+</div>
+<button class="cart-button opacity-0 transform translate-y-2 w-full py-2 bg-secondary text-on-secondary rounded-lg font-label-bold transition-all duration-300">Pievienot grozam</button>
+</div>
+<!-- Product 11 -->
+<div class="product-card group bg-surface-container-lowest rounded-xl p-md border border-teal-100/30 shadow-[0_4px_20px_-5px_rgba(38,70,83,0.08)] hover:shadow-xl transition-all relative">
+<div class="relative mb-md bg-slate-100 rounded-lg aspect-square overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Safe children's mirror with color filters for sensory exploration, bright primary colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBKfS793tibvJMdmoROG52Qe0OsPfe56YqdxFZDThGzEhh87xUaiR_SqDx0SvOCC-XZcYidu1goK4UqxLSQ4NGMo3AJR92H18dL1N06J4c2arBDBvN4W3VITiav82yVgZY5ClAsoju06mX3LUIu89xYO_pnPhPYOwZtcxL3tSR2AX1XXtBaOO2sMkoLQxIddeMOuQy15dOig41tQHOawvw5KNmiN5uPTfEkFIV_K9sGGdLCd745gTWEjJ1gePGx-U2hibwCW_e0iw"/>
+<button class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-sm bg-secondary-container/20 text-secondary">Beleduc</span>
+<h3 class="font-headline-md text-sm mb-sm line-clamp-2 h-10">Krāsu sajūtu spogulis</h3>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline-md text-lg text-on-surface">56,00 €</span>
+</div>
+<button class="cart-button opacity-0 transform translate-y-2 w-full py-2 bg-secondary text-on-secondary rounded-lg font-label-bold transition-all duration-300">Pievienot grozam</button>
+</div>
+<!-- Product 12 -->
+<div class="product-card group bg-surface-container-lowest rounded-xl p-md border border-teal-100/30 shadow-[0_4px_20px_-5px_rgba(38,70,83,0.08)] hover:shadow-xl transition-all relative">
+<div class="relative mb-md bg-slate-100 rounded-lg aspect-square overflow-hidden">
+<img alt="Product" class="w-full h-full object-cover group-hover:scale-105 transition-transform" data-alt="Set of magnetic geometric forms in bright colors for creative building, studio background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB3wgEXG7CDVZXWjceiYkeqfuXRjwq0tb20rQHoDwIAoyWoRIoHSOW9mIX4EQlL4EiYygcSF5tUkycHBQpErFUSmlhbAe4yLO_2haJXdZmv6kZm6Vdc_ui1Jp2TTfxsn6gdKH3V9zMbaMr9UIZtqOcmvtw063rgz0vdbPfLTAA_KQt0E0mdjysFOwgPoG2V14mdjKdvja6B3-vhBYMkh55i_kLuQOVp6vq7xVywr94RbPmJn4vrja76PBXKj5k1K9j4pyb8ekMk3Q"/>
+<button class="absolute top-2 right-2 p-2 bg-white/80 backdrop-blur-sm rounded-full text-secondary hover:bg-white transition-all">
+<span class="material-symbols-outlined text-[20px]" data-icon="favorite">favorite</span>
+</button>
+</div>
+<span class="inline-block px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider mb-sm bg-primary-container/20 text-primary">8kajis</span>
+<h3 class="font-headline-md text-sm mb-sm line-clamp-2 h-10">Magnētiskās formas</h3>
+<div class="flex items-baseline gap-2 mb-4">
+<span class="font-headline-md text-lg text-on-surface">15,90 €</span>
+</div>
+<button class="cart-button opacity-0 transform translate-y-2 w-full py-2 bg-secondary text-on-secondary rounded-lg font-label-bold transition-all duration-300">Pievienot grozam</button>
+</div>
+</div>
+<!-- Pagination -->
+<div class="mt-xxl flex justify-center gap-sm">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-label-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant font-label-bold">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant font-label-bold">3</button>
+<span class="flex items-center justify-center px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant font-label-bold">12</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container transition-colors text-on-surface-variant">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 pt-16 pb-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 max-w-7xl mx-auto px-6">
+<div class="space-y-md">
+<h4 class="text-lg font-bold text-teal-800 dark:text-teal-200 mb-lg">Iepirkties</h4>
+<ul class="space-y-sm font-plus-jakarta text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Educational Toys</li>
+<li class="hover:text-teal-600 transition-colors cursor-pointer text-orange-500 font-bold">Montessori</li>
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Sensory Play</li>
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Games</li>
+</ul>
+</div>
+<div class="space-y-md">
+<h4 class="text-lg font-bold text-teal-800 dark:text-teal-200 mb-lg">Par mums</h4>
+<ul class="space-y-sm font-plus-jakarta text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Our Story</li>
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Sustainability</li>
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Careers</li>
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Blog</li>
+</ul>
+</div>
+<div class="space-y-md">
+<h4 class="text-lg font-bold text-teal-800 dark:text-teal-200 mb-lg">Palīdzība</h4>
+<ul class="space-y-sm font-plus-jakarta text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Shipping</li>
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Returns</li>
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Size Guide</li>
+<li class="hover:text-teal-600 transition-colors cursor-pointer">FAQ</li>
+</ul>
+</div>
+<div class="space-y-md">
+<h4 class="text-lg font-bold text-teal-800 dark:text-teal-200 mb-lg">Kontakti</h4>
+<ul class="space-y-sm font-plus-jakarta text-sm leading-relaxed text-slate-500 dark:text-slate-400">
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Email Us</li>
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Store Locator</li>
+<li class="hover:text-teal-600 transition-colors cursor-pointer">WhatsApp</li>
+<li class="hover:text-teal-600 transition-colors cursor-pointer">Instagram</li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 mt-xl pt-md border-t border-slate-200/50 flex flex-col md:flex-row justify-between items-center gap-md">
+<p class="font-plus-jakarta text-xs text-slate-400">© 2024 8kajis.lv - Nurturing Curiosity through Play.</p>
+<div class="flex gap-md">
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors">payments</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors">local_shipping</span>
+<span class="material-symbols-outlined text-outline cursor-pointer hover:text-primary transition-colors">verified_user</span>
+</div>
+</div>
+</footer>
+</body></html>
