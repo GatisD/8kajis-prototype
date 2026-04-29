@@ -69,9 +69,12 @@
   .logo:hover{transform:scale(1.05)}
   .logo img{height:48px;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.15))}
 
-  /* Bottom hint */
-  .hint{position:fixed;bottom:32px;left:50%;transform:translateX(-50%);z-index:40;color:rgba(255,255,255,.7);font-size:12px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;mix-blend-mode:difference;animation:wave 8s ease-in-out infinite,fadeUp .8s 1.5s cubic-bezier(.22,1,.36,1) both}
-  .hint .dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor;margin:0 12px;vertical-align:middle;animation:shimmer 2s ease-in-out infinite}
+  /* Click indicator — subtle pill within each panel */
+  .click-indicator{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:5;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;backdrop-filter:blur(8px);animation:fadeUp .8s 1.5s cubic-bezier(.22,1,.36,1) both;pointer-events:none;white-space:nowrap}
+  .click-indicator.left-ind{background:rgba(0,80,72,.15);border:1px solid rgba(0,80,72,.25);color:#005048}
+  .click-indicator.right-ind{background:rgba(255,255,255,.12);border:1px solid rgba(255,180,162,.3);color:#ffdad2}
+  .click-indicator .arrow{transition:transform .4s}
+  .panel:hover .click-indicator .arrow{transform:translateX(6px)}
 
   /* Decorative shapes */
   .blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
@@ -104,37 +107,42 @@
       <span class="material-symbols-outlined" style="font-size:140px;color:#00685d;font-variation-settings:'FILL' 1">toys</span>
     </div>
 
-    <div class="panel-bg absolute inset-0 flex items-end justify-end pr-8 pb-8 md:pr-16 md:pb-16 pointer-events-none">
-      <img alt="Koka attīstošas rotaļlietas" class="object-contain w-[55%] max-w-[420px] drop-shadow-2xl"
+    <!-- Toy image stays in lower-right CORNER, doesn't intrude on text column -->
+    <div class="panel-bg absolute pointer-events-none" style="right:-4%;bottom:-4%;width:min(38%,360px);aspect-ratio:1/1">
+      <img alt="Koka attīstošas rotaļlietas" class="object-contain w-full h-full drop-shadow-2xl"
            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2K9PFUMoXB1z4w1SCAV-xAKqijJHNKD4eX-LZlL5ikQbqZJe8Z-NI_rg3YVAzEhPdYGwyyJyGi8_K-lZbWyxbWDdt9ecbau32jfVJNaxb4PGQ03s5GghZ_S1LWdHlXnqHO00jAYIqDTC7z0iP2Z2Y6-tdjVHTrR2hFcl8_YJlDmZa9zyl-_2J8tYx4LhfKB5Swdz7KFlE3HmcDsexm_mmZJQSKZkvs0s4LZEfa7L976qT8h-YdeQvXvhTlhbRMTxhav8q1R4yJg"/>
     </div>
 
-    <div class="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-2xl">
-      <div class="fade-1 inline-flex items-center gap-2 px-4 py-2 bg-white/50 backdrop-blur-md rounded-full border border-white/60 mb-8 self-start">
+    <div class="relative z-10 h-full flex flex-col justify-center px-8 md:px-12 lg:px-20 max-w-[620px]">
+      <div class="fade-1 inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full border border-white/70 mb-6 self-start shadow-sm">
         <span class="material-symbols-outlined" style="font-size:18px;color:#00685d">shopping_bag</span>
         <span style="color:#005048;font-weight:700;font-size:11px;letter-spacing:.15em">VEIKALS</span>
       </div>
 
-      <h1 class="fade-2 font-extrabold leading-[1.05] tracking-tight" style="color:#00201c;font-size:clamp(36px,5vw,68px)">
+      <h1 class="fade-2 font-extrabold leading-[1.05] tracking-tight" style="color:#00201c;font-size:clamp(34px,4.5vw,60px)">
         Attīstošas spēles<br>ir tilts starp<br>teoriju un izpratni
       </h1>
 
-      <p class="fade-3 mt-6 text-lg md:text-xl max-w-md" style="color:#3d4947">
+      <p class="fade-3 mt-5 text-base md:text-lg max-w-[420px]" style="color:#3d4947">
         Izglītojošas rotaļlietas bērnu attīstībai, kas veicina radošumu un loģisko domāšanu.
       </p>
 
-      <div class="fade-4 mt-10">
+      <!-- Trust strip BEFORE CTA — won't be hidden by toy image -->
+      <div class="fade-3 mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold" style="color:#005048">
+        <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined" style="font-size:16px">local_shipping</span> Bezmaksas piegāde virs 100€</span>
+        <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined" style="font-size:16px">handshake</span> Beleduc partneris</span>
+      </div>
+
+      <div class="fade-4 mt-8">
         <span class="panel-cta inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-lg font-bold shadow-xl"
               style="background:#ffab69;color:#3c0700">
           Doties uz veikalu
           <span class="material-symbols-outlined panel-arrow">arrow_forward</span>
         </span>
       </div>
-
-      <p class="fade-4 mt-8 text-sm" style="color:#005048;font-weight:600">
-        🚚 Bezmaksas piegāde virs 100€ &nbsp;·&nbsp; ⭐ Beleduc partneris
-      </p>
     </div>
+
+    <span class="click-indicator left-ind">Izvēlies veikalu <span class="arrow material-symbols-outlined" style="font-size:14px">arrow_forward</span></span>
   </a>
 
   <!-- RIGHT: SENSORĀ TELPA BIMINI -->
@@ -162,41 +170,41 @@
       <span class="material-symbols-outlined" style="font-size:200px;color:#ffb4a2">waves</span>
     </div>
 
-    <div class="relative z-10 h-full flex flex-col justify-center px-8 md:px-16 lg:px-24 max-w-2xl">
-      <div class="fade-1 inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/20 mb-8 self-start">
+    <div class="relative z-10 h-full flex flex-col justify-center px-8 md:px-12 lg:px-20 max-w-[620px]">
+      <div class="fade-1 inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/25 mb-6 self-start shadow-sm">
         <span class="material-symbols-outlined" style="font-size:18px;color:#ffb4a2;font-variation-settings:'FILL' 1">bubble_chart</span>
         <span style="color:#ffb4a2;font-weight:700;font-size:11px;letter-spacing:.15em">SENSORĀ TELPA</span>
       </div>
 
-      <h2 class="fade-2 font-extrabold leading-[1.05] tracking-tight" style="color:#ffdad2;font-size:clamp(36px,5vw,68px)">
+      <h2 class="fade-2 font-extrabold leading-[1.05] tracking-tight" style="color:#ffdad2;font-size:clamp(34px,4.5vw,60px)">
         Sensorā<br>telpa Bimini
       </h2>
 
-      <p class="fade-3 mt-6 text-lg md:text-xl max-w-md" style="color:#ffdad2;opacity:.9">
+      <p class="fade-3 mt-5 text-base md:text-lg max-w-[420px]" style="color:#ffdad2;opacity:.92">
         Telpa sajūtām un izaugsmei. Ķekavā, Nākotnes ielā 2.
       </p>
-      <p class="fade-3 mt-2 italic max-w-md" style="color:white;opacity:.7">
+      <p class="fade-3 mt-2 italic text-sm max-w-[420px]" style="color:white;opacity:.75">
         Vieta, kur miers satiekas ar atklājumiem.
       </p>
 
-      <div class="fade-4 mt-10">
+      <!-- Trust strip BEFORE CTA -->
+      <div class="fade-3 mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold" style="color:#ffb4a2">
+        <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined" style="font-size:16px">auto_awesome</span> Snoezelen metode</span>
+        <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined" style="font-size:16px">call</span> +371 20009028</span>
+      </div>
+
+      <div class="fade-4 mt-8">
         <span class="panel-cta inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-lg font-bold shadow-xl border-2"
               style="border-color:#ffdad2;color:#ffdad2;background:rgba(255,255,255,.05);backdrop-filter:blur(10px)">
           Iepazīt Bimini
           <span class="material-symbols-outlined panel-arrow">explore</span>
         </span>
       </div>
-
-      <p class="fade-4 mt-8 text-sm" style="color:#ffb4a2;font-weight:600">
-        ✨ Snoezelen metode &nbsp;·&nbsp; 📞 +371 20009028
-      </p>
     </div>
+
+    <span class="click-indicator right-ind">Iepazīt Bimini <span class="arrow material-symbols-outlined" style="font-size:14px">arrow_forward</span></span>
   </a>
 
-</div>
-
-<div class="hint">
-  Izvēlies savu pieredzi <span class="dot"></span> Choose your experience
 </div>
 
 <script>
@@ -227,5 +235,6 @@
   });
 </script>
 
+<script src="/assets/app.js" defer></script>
 </body>
 </html>
