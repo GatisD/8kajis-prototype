@@ -9,19 +9,39 @@ import OctopusMascot from "@/components/OctopusMascot";
 
 const VALUES = [
   {
-    icon: "🌱",
     title: "Attīstība",
     desc: "Ticam, ka katra rotaļlieta var būt solis uz izpratni, radošumu un mīlestību pret mācīšanos.",
+    svg: (
+      <>
+        <path d="M12 21V9" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M12 9c-3 0-5-2-5-5 3 0 5 2 5 5z" strokeWidth="1.5" strokeLinejoin="round" fill="none" />
+        <path d="M12 9c3 0 5-2 5-5-3 0-5 2-5 5z" strokeWidth="1.5" strokeLinejoin="round" fill="none" />
+      </>
+    ),
+    accent: "bg-emerald-50 text-emerald-600",
   },
   {
-    icon: "♿",
     title: "Iekļaušana",
     desc: "Bimini sensorā telpa ir pieejama visiem — neatkarīgi no vecuma vai spējām.",
+    svg: (
+      <>
+        <circle cx="12" cy="5" r="2" strokeWidth="1.5" fill="none" />
+        <path d="M12 8v6m-3-3h6m-3 0v8" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M9 14l-3 6m9-6 3 6" strokeWidth="1.5" strokeLinecap="round" />
+      </>
+    ),
+    accent: "bg-purple-50 text-purple-600",
   },
   {
-    icon: "🌿",
     title: "Ilgtspēja",
     desc: "Priekšroku dodām ilgtspējīgiem, kvalitatīviem materiāliem, kas kalpo gadiem.",
+    svg: (
+      <>
+        <path d="M5 19c8 0 14-6 14-14-8 0-14 6-14 14z" strokeWidth="1.5" strokeLinejoin="round" fill="none" />
+        <path d="M5 19c4-4 7-7 14-14" strokeWidth="1.5" strokeLinecap="round" />
+      </>
+    ),
+    accent: "bg-teal-50 text-teal-600",
   },
 ];
 
@@ -128,7 +148,11 @@ export default function ParMums() {
               {VALUES.map((v, i) => (
                 <FadeInOnScroll key={v.title} delay={i * 0.12}>
                   <div className="bg-white rounded-2xl p-8 border border-gray-100 shadow-sm text-center">
-                    <span className="text-4xl block mb-4" aria-hidden="true">{v.icon}</span>
+                    <div className={`w-12 h-12 rounded-xl mx-auto mb-5 flex items-center justify-center ${v.accent}`}>
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-6 h-6" aria-hidden="true">
+                        {v.svg}
+                      </svg>
+                    </div>
                     <h3 className="font-heading font-700 text-navy text-lg mb-3">{v.title}</h3>
                     <p className="text-navy/60 text-sm leading-relaxed">{v.desc}</p>
                   </div>

@@ -36,11 +36,11 @@ type AddressData = z.infer<typeof addressSchema>;
 
 const STEPS = ["Kontakti", "Piegāde", "Maksājums", "Apstiprinājums"];
 const PAYMENT_METHODS = [
-  { id: "card", label: "Kredītkarte (Stripe)", icon: "💳" },
-  { id: "swedbank", label: "Swedbank", icon: "🏦" },
-  { id: "seb", label: "SEB banka", icon: "🏦" },
-  { id: "citadele", label: "Citadele", icon: "🏦" },
-  { id: "paypal", label: "PayPal", icon: "🅿️" },
+  { id: "card", label: "Kredītkarte (Stripe)" },
+  { id: "swedbank", label: "Swedbank" },
+  { id: "seb", label: "SEB banka" },
+  { id: "citadele", label: "Citadele" },
+  { id: "paypal", label: "PayPal" },
 ];
 
 export default function Checkout() {
@@ -385,7 +385,6 @@ export default function Checkout() {
                             className="accent-navy"
                             aria-label={pm.label}
                           />
-                          <span aria-hidden="true" className="text-xl">{pm.icon}</span>
                           <span className="font-semibold text-navy text-sm">{pm.label}</span>
                         </label>
                       ))}

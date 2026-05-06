@@ -302,13 +302,38 @@ export default function Produkts() {
               {/* Trust badges */}
               <div className="mt-6 pt-5 border-t border-gray-100 grid grid-cols-3 gap-3">
                 {[
-                  { icon: "🔒", text: "Droša apmaksa" },
-                  { icon: "🚀", text: "Ātra piegāde" },
-                  { icon: "↩️", text: "14 dienu atgriešana" },
+                  {
+                    text: "Droša apmaksa",
+                    svg: (
+                      <path d="M12 2 4 5v6c0 5 3.4 9.3 8 11 4.6-1.7 8-6 8-11V5l-8-3z" strokeWidth="1.5" strokeLinejoin="round" strokeLinecap="round" />
+                    ),
+                  },
+                  {
+                    text: "Ātra piegāde",
+                    svg: (
+                      <>
+                        <path d="M3 7h11v9H3z" strokeWidth="1.5" strokeLinejoin="round" />
+                        <path d="M14 10h4l3 3v3h-7" strokeWidth="1.5" strokeLinejoin="round" />
+                        <circle cx="7" cy="18" r="1.8" strokeWidth="1.5" />
+                        <circle cx="17" cy="18" r="1.8" strokeWidth="1.5" />
+                      </>
+                    ),
+                  },
+                  {
+                    text: "14 dienu atgriešana",
+                    svg: (
+                      <>
+                        <path d="M3 12a9 9 0 1 0 3-6.7" strokeWidth="1.5" strokeLinecap="round" fill="none" />
+                        <path d="M3 4v5h5" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" fill="none" />
+                      </>
+                    ),
+                  },
                 ].map((b) => (
                   <div key={b.text} className="text-center">
-                    <span className="text-lg block" aria-hidden="true">{b.icon}</span>
-                    <span className="text-xs text-navy/50 font-semibold leading-tight block mt-1">{b.text}</span>
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" className="w-5 h-5 mx-auto text-navy/60" aria-hidden="true">
+                      {b.svg}
+                    </svg>
+                    <span className="text-xs text-navy/50 font-semibold leading-tight block mt-1.5">{b.text}</span>
                   </div>
                 ))}
               </div>
