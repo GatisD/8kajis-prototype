@@ -81,17 +81,17 @@ export default function Landing() {
       >
         {/* Language switcher — fixed overlay */}
         <div
-          className="fixed top-6 right-6 z-50 flex items-center gap-0.5 px-2 py-1.5 rounded-full bg-white/15 backdrop-blur-md border border-white/20"
+          className="fixed top-4 right-4 z-50 flex items-center gap-0.5 px-1.5 py-1 rounded-full bg-black/30 border border-white/15"
           role="navigation"
           aria-label="Valodas izvēle"
         >
           {(["LV", "EN", "RU", "LT", "EE"] as const).map((lang, i) => (
             <button
               key={lang}
-              className={`px-2 py-0.5 rounded-full text-xs font-bold transition-all ${
+              className={`px-1.5 py-0.5 rounded-full text-[10px] sm:text-xs font-bold transition-all ${
                 i === 0
                   ? "bg-white text-gray-900"
-                  : "text-white/80 hover:text-white hover:bg-white/15"
+                  : "text-white/85 hover:text-white hover:bg-white/15"
               }`}
               aria-label={`Mainīt valodu uz ${lang}`}
               aria-current={i === 0 ? "true" : undefined}
