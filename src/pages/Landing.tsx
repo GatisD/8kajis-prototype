@@ -76,8 +76,7 @@ export default function Landing() {
 
       {/* Full-screen split — no header */}
       <main
-        className="flex min-h-[100dvh] overflow-hidden"
-        style={{ flexDirection: "row" }}
+        className="flex flex-col md:flex-row min-h-[100dvh] overflow-hidden"
         aria-label="8kajis.lv — izvēlies savu virzienu"
       >
         {/* Language switcher — fixed overlay */}
@@ -146,7 +145,7 @@ export default function Landing() {
 
           {/* Blob decorations */}
           <div
-            className="absolute top-[-80px] left-[-80px] w-[320px] h-[320px] rounded-full pointer-events-none"
+            className="absolute top-[-80px] left-[-80px] w-[140px] h-[140px] md:w-[320px] md:h-[320px] rounded-full pointer-events-none hidden md:block"
             style={{
               background: "#1B2B5E",
               opacity: 0.08,
@@ -155,7 +154,7 @@ export default function Landing() {
             aria-hidden="true"
           />
           <div
-            className={`absolute bottom-[-100px] right-[-40px] w-[260px] h-[260px] rounded-full pointer-events-none ${
+            className={`absolute bottom-[-100px] right-[-40px] w-[260px] h-[260px] rounded-full pointer-events-none hidden md:block ${
               reduced ? "" : "animate-shimmer"
             }`}
             style={{
@@ -271,9 +270,9 @@ export default function Landing() {
             </motion.div>
           </Link>
 
-          {/* Toy image decoration — bottom right (lifted to avoid CTA strip overlap) */}
+          {/* Toy image decoration — bottom right (desktop only) */}
           <div
-            className="absolute right-[-2%] bottom-[12%] w-[min(34%,300px)] pointer-events-none"
+            className="hidden md:block absolute right-[-2%] bottom-[12%] w-[min(34%,300px)] pointer-events-none"
             style={{ aspectRatio: "1/1" }}
             aria-hidden="true"
           >
@@ -291,7 +290,7 @@ export default function Landing() {
 
           {/* Click indicator — left-aligned to avoid overlap with central scroll cue */}
           <span
-            className="absolute bottom-20 left-8 md:left-12 lg:left-16 chevron-bounce text-xs font-bold tracking-widest uppercase text-navy/70 pointer-events-none select-none"
+            className="hidden md:inline-block absolute bottom-20 md:left-12 lg:left-16 chevron-bounce text-xs font-bold tracking-widest uppercase text-navy/70 pointer-events-none select-none"
             style={{ letterSpacing: "0.18em" }}
             aria-hidden="true"
           >
@@ -347,7 +346,7 @@ export default function Landing() {
 
           {/* Purple blobs */}
           <div
-            className={`absolute top-[-100px] right-[-100px] w-[400px] h-[400px] rounded-full pointer-events-none ${reduced ? "" : "animate-shimmer"}`}
+            className={`absolute top-[-100px] right-[-100px] w-[400px] h-[400px] rounded-full pointer-events-none hidden md:block ${reduced ? "" : "animate-shimmer"}`}
             style={{
               background: "#7C3AED",
               opacity: 0.35,
@@ -356,7 +355,7 @@ export default function Landing() {
             aria-hidden="true"
           />
           <div
-            className={`absolute bottom-[-80px] left-[-80px] w-[320px] h-[320px] rounded-full pointer-events-none ${reduced ? "" : "animate-shimmer"}`}
+            className={`absolute bottom-[-80px] left-[-80px] w-[320px] h-[320px] rounded-full pointer-events-none hidden md:block ${reduced ? "" : "animate-shimmer"}`}
             style={{
               background: "#00E5CC",
               opacity: 0.1,
@@ -506,7 +505,7 @@ export default function Landing() {
 
           {/* Click indicator — right-aligned to avoid overlap with central scroll cue */}
           <span
-            className="absolute bottom-20 right-8 md:right-12 lg:right-16 chevron-bounce text-xs font-bold tracking-widest uppercase pointer-events-none select-none"
+            className="hidden md:inline-block absolute bottom-20 md:right-12 lg:right-16 chevron-bounce text-xs font-bold tracking-widest uppercase pointer-events-none select-none"
             style={{
               letterSpacing: "0.18em",
               color: "rgba(255,218,210,0.7)",
@@ -517,9 +516,9 @@ export default function Landing() {
           </span>
         </motion.div>
 
-        {/* ===== BOTTOM CENTER — choose direction ===== */}
+        {/* ===== BOTTOM CENTER — choose direction (desktop only) ===== */}
         <div
-          className="absolute bottom-6 left-1/2 z-40 pointer-events-none text-center px-4 py-2 rounded-full backdrop-blur-md"
+          className="hidden md:block absolute bottom-6 left-1/2 z-40 pointer-events-none text-center px-4 py-2 rounded-full backdrop-blur-md"
           style={{
             transform: "translateX(-50%)",
             background: "rgba(0,0,0,0.25)",
