@@ -1,240 +1,53 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="lv">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>8kajis.lv — Izvēlies savu pieredzi</title>
-<meta name="description" content="Bērnu attīstošas rotaļlietas un sensorā telpa Bimini Ķekavā">
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
-<style>
-  *{font-family:'Plus Jakarta Sans',sans-serif}
-  html,body{height:100%;overflow:hidden;margin:0}
-  .material-symbols-outlined{font-variation-settings:'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24}
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico?v=1" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#00685d" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta property="og:image" content="https://8kajis.lv/og-image.png" />
+    <meta name="twitter:image" content="https://8kajis.lv/og-image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
 
-  /* Initial split-reveal */
-  @keyframes slideInLeft{from{transform:translateX(-100%);opacity:0}to{transform:translateX(0);opacity:1}}
-  @keyframes slideInRight{from{transform:translateX(100%);opacity:0}to{transform:translateX(0);opacity:1}}
-  @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-  @keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-12px) rotate(2deg)}}
-  @keyframes shimmer{0%,100%{opacity:.3}50%{opacity:.7}}
-  @keyframes wave{0%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(-8px)}100%{transform:translateX(-50%) translateY(0)}}
+    <!-- Fonts: preconnect + non-blocking load (FCP boost) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Inter:wght@400;500&display=swap"
+      onload="this.onload=null;this.rel='stylesheet'"
+    />
+    <noscript>
+      <link
+        rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700&family=Inter:wght@400;500&display=swap"
+      />
+    </noscript>
 
-  .panel-left{animation:slideInLeft .9s cubic-bezier(.22,1,.36,1) both}
-  .panel-right{animation:slideInRight .9s cubic-bezier(.22,1,.36,1) both}
-  .fade-1{animation:fadeUp .8s .5s cubic-bezier(.22,1,.36,1) both}
-  .fade-2{animation:fadeUp .8s .7s cubic-bezier(.22,1,.36,1) both}
-  .fade-3{animation:fadeUp .8s .9s cubic-bezier(.22,1,.36,1) both}
-  .fade-4{animation:fadeUp .8s 1.1s cubic-bezier(.22,1,.36,1) both}
+    <!-- Google Consent Mode v2 — must fire before any Google tags -->
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("consent", "default", {
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+        analytics_storage: "denied",
+        wait_for_update: 500,
+      });
+    </script>
 
-  .float{animation:float 6s ease-in-out infinite}
-  .shimmer{animation:shimmer 4s ease-in-out infinite}
-  .wave{animation:wave 8s ease-in-out infinite}
-
-  /* Panel hover expand effect */
-  .split{display:flex;width:100vw;height:100vh;transition:none}
-  .panel{position:relative;flex:1 1 50%;transition:flex-grow .7s cubic-bezier(.22,1,.36,1),flex-basis .7s cubic-bezier(.22,1,.36,1);overflow:hidden;cursor:pointer}
-  @media(min-width:768px){
-    .split:hover .panel{flex-basis:38%}
-    .split:hover .panel:hover{flex-basis:62%}
-    .panel:hover .panel-bg{transform:scale(1.05)}
-    .panel:hover .panel-cta{transform:translateY(-4px);box-shadow:0 24px 48px -12px rgba(0,0,0,.35)}
-    .panel:hover .panel-arrow{transform:translateX(8px)}
-  }
-  .panel-bg{transition:transform 1.2s cubic-bezier(.22,1,.36,1)}
-  .panel-cta{transition:all .4s cubic-bezier(.22,1,.36,1)}
-  .panel-arrow{transition:transform .4s cubic-bezier(.22,1,.36,1)}
-
-  /* Click transition: expand to full screen and fade */
-  .leaving-left .panel:nth-child(1){flex-basis:100%}
-  .leaving-left .panel:nth-child(2){flex-basis:0%;opacity:0}
-  .leaving-right .panel:nth-child(1){flex-basis:0%;opacity:0}
-  .leaving-right .panel:nth-child(2){flex-basis:100%}
-
-  /* Mobile: stack vertically */
-  @media(max-width:767px){
-    .split{flex-direction:column;height:100dvh}
-    .panel{flex:1 1 50%;min-height:50vh}
-  }
-
-  /* Mini language switcher */
-  .lang-switcher{position:fixed;top:24px;right:24px;z-index:50;display:flex;gap:4px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);padding:6px;border-radius:999px;border:1px solid rgba(255,255,255,.2)}
-  .lang-switcher button{padding:6px 12px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.05em;color:rgba(255,255,255,.85);transition:all .3s;border:0;background:transparent;cursor:pointer}
-  .lang-switcher button.active{background:white;color:#0f172a}
-  .lang-switcher button:hover:not(.active){background:rgba(255,255,255,.15)}
-
-  /* Logo */
-  .logo{position:fixed;top:20px;left:24px;z-index:50;text-decoration:none;display:flex;align-items:center;gap:10px;transition:transform .3s}
-  .logo:hover{transform:scale(1.05)}
-  .logo img{height:48px;width:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,.15))}
-
-  /* Click indicator — subtle pill within each panel */
-  .click-indicator{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:5;display:inline-flex;align-items:center;gap:8px;padding:10px 18px;border-radius:999px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;backdrop-filter:blur(8px);animation:fadeUp .8s 1.5s cubic-bezier(.22,1,.36,1) both;pointer-events:none;white-space:nowrap}
-  .click-indicator.left-ind{background:rgba(0,80,72,.15);border:1px solid rgba(0,80,72,.25);color:#005048}
-  .click-indicator.right-ind{background:rgba(255,255,255,.12);border:1px solid rgba(255,180,162,.3);color:#ffdad2}
-  .click-indicator .arrow{transition:transform .4s}
-  .panel:hover .click-indicator .arrow{transform:translateX(6px)}
-
-  /* Decorative shapes */
-  .blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none}
-  .wave-svg{position:absolute;bottom:0;left:50%;width:100%;opacity:.15;pointer-events:none}
-</style>
-</head>
-<body>
-
-<a href="/" class="logo" aria-label="8kajis.lv mājaslapa">
-  <img src="https://8kajis.lv/cdn/shop/files/kajis_ef51f179-5d46-4dd6-9b1b-e6822e015424.png?v=1676978313&width=500" alt="8kajis.lv">
-</a>
-
-<div class="lang-switcher fade-1">
-  <button class="active">LV</button>
-  <button>EN</button>
-  <button>RU</button>
-  <button>LT</button>
-  <button>EE</button>
-</div>
-
-<div id="split" class="split">
-
-  <!-- LEFT: VEIKALS -->
-  <a href="/pages/veikals" class="panel panel-left" data-side="left" style="background:linear-gradient(135deg,#8cf5e4 0%,#a7f5e9 50%,#ffe5cc 100%)">
-    <div class="blob" style="top:-100px;left:-100px;width:400px;height:400px;background:#00685d;opacity:.15"></div>
-    <div class="blob shimmer" style="bottom:-150px;right:-50px;width:350px;height:350px;background:#ffab69;opacity:.2"></div>
-
-    <!-- Decorative wood toys icon -->
-    <div class="absolute top-12 right-12 opacity-20 float">
-      <span class="material-symbols-outlined" style="font-size:140px;color:#00685d;font-variation-settings:'FILL' 1">toys</span>
-    </div>
-
-    <!-- Toy image stays in lower-right CORNER, doesn't intrude on text column -->
-    <div class="panel-bg absolute pointer-events-none" style="right:-4%;bottom:-4%;width:min(38%,360px);aspect-ratio:1/1">
-      <img alt="Koka attīstošas rotaļlietas" class="object-contain w-full h-full drop-shadow-2xl"
-           src="https://lh3.googleusercontent.com/aida-public/AB6AXuA2K9PFUMoXB1z4w1SCAV-xAKqijJHNKD4eX-LZlL5ikQbqZJe8Z-NI_rg3YVAzEhPdYGwyyJyGi8_K-lZbWyxbWDdt9ecbau32jfVJNaxb4PGQ03s5GghZ_S1LWdHlXnqHO00jAYIqDTC7z0iP2Z2Y6-tdjVHTrR2hFcl8_YJlDmZa9zyl-_2J8tYx4LhfKB5Swdz7KFlE3HmcDsexm_mmZJQSKZkvs0s4LZEfa7L976qT8h-YdeQvXvhTlhbRMTxhav8q1R4yJg"/>
-    </div>
-
-    <div class="relative z-10 h-full flex flex-col justify-center px-8 md:px-12 lg:px-20 max-w-[620px]">
-      <div class="fade-1 inline-flex items-center gap-2 px-4 py-2 bg-white/60 backdrop-blur-md rounded-full border border-white/70 mb-6 self-start shadow-sm">
-        <span class="material-symbols-outlined" style="font-size:18px;color:#00685d">shopping_bag</span>
-        <span style="color:#005048;font-weight:700;font-size:11px;letter-spacing:.15em">VEIKALS</span>
-      </div>
-
-      <h1 class="fade-2 font-extrabold leading-[1.05] tracking-tight" style="color:#00201c;font-size:clamp(34px,4.5vw,60px)">
-        Attīstošas spēles<br>ir tilts starp<br>teoriju un izpratni
-      </h1>
-
-      <p class="fade-3 mt-5 text-base md:text-lg max-w-[420px]" style="color:#3d4947">
-        Izglītojošas rotaļlietas bērnu attīstībai, kas veicina radošumu un loģisko domāšanu.
-      </p>
-
-      <!-- Trust strip BEFORE CTA — won't be hidden by toy image -->
-      <div class="fade-3 mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold" style="color:#005048">
-        <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined" style="font-size:16px">local_shipping</span> Bezmaksas piegāde virs 100€</span>
-        <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined" style="font-size:16px">handshake</span> Beleduc partneris</span>
-      </div>
-
-      <div class="fade-4 mt-8">
-        <span class="panel-cta inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-lg font-bold shadow-xl"
-              style="background:#ffab69;color:#3c0700">
-          Doties uz veikalu
-          <span class="material-symbols-outlined panel-arrow">arrow_forward</span>
-        </span>
-      </div>
-    </div>
-
-    <span class="click-indicator left-ind">Izvēlies veikalu <span class="arrow material-symbols-outlined" style="font-size:14px">arrow_forward</span></span>
-  </a>
-
-  <!-- RIGHT: SENSORĀ TELPA BIMINI -->
-  <a href="/pages/sensora-bimini" class="panel panel-right" data-side="right" style="background:linear-gradient(135deg,#1e1b4b 0%,#3b0764 50%,#a03b21 100%)">
-    <div class="blob shimmer" style="top:-120px;right:-120px;width:500px;height:500px;background:#7c3aed;opacity:.4"></div>
-    <div class="blob shimmer" style="bottom:-100px;left:-100px;width:400px;height:400px;background:#ffb4a2;opacity:.25;animation-delay:2s"></div>
-
-    <!-- Sensory image overlay -->
-    <div class="panel-bg absolute inset-0 opacity-40 mix-blend-overlay">
-      <img alt="" class="object-cover w-full h-full"
-           src="https://cdn.shopify.com/s/files/1/0551/0768/2366/files/8kajisSensoric_2.jpg?v=1773695845"/>
-    </div>
-
-    <!-- Stars -->
-    <div class="absolute inset-0 pointer-events-none">
-      <span class="absolute shimmer" style="top:18%;left:25%;width:3px;height:3px;background:white;border-radius:50%;box-shadow:0 0 8px white"></span>
-      <span class="absolute shimmer" style="top:32%;left:65%;width:2px;height:2px;background:white;border-radius:50%;box-shadow:0 0 6px white;animation-delay:1s"></span>
-      <span class="absolute shimmer" style="top:55%;left:15%;width:4px;height:4px;background:#ffb4a2;border-radius:50%;box-shadow:0 0 12px #ffb4a2;animation-delay:2s"></span>
-      <span class="absolute shimmer" style="top:75%;left:75%;width:2px;height:2px;background:white;border-radius:50%;box-shadow:0 0 6px white;animation-delay:.5s"></span>
-      <span class="absolute shimmer" style="top:25%;left:80%;width:3px;height:3px;background:#c4b5fd;border-radius:50%;box-shadow:0 0 10px #c4b5fd;animation-delay:1.5s"></span>
-    </div>
-
-    <!-- Wave decoration -->
-    <div class="absolute bottom-8 right-8 opacity-15">
-      <span class="material-symbols-outlined" style="font-size:200px;color:#ffb4a2">waves</span>
-    </div>
-
-    <div class="relative z-10 h-full flex flex-col justify-center px-8 md:px-12 lg:px-20 max-w-[620px]">
-      <div class="fade-1 inline-flex items-center gap-2 px-4 py-2 bg-white/10 backdrop-blur-md rounded-full border border-white/25 mb-6 self-start shadow-sm">
-        <span class="material-symbols-outlined" style="font-size:18px;color:#ffb4a2;font-variation-settings:'FILL' 1">bubble_chart</span>
-        <span style="color:#ffb4a2;font-weight:700;font-size:11px;letter-spacing:.15em">SENSORĀ TELPA</span>
-      </div>
-
-      <h2 class="fade-2 font-extrabold leading-[1.05] tracking-tight" style="color:#ffdad2;font-size:clamp(34px,4.5vw,60px)">
-        Sensorā<br>telpa Bimini
-      </h2>
-
-      <p class="fade-3 mt-5 text-base md:text-lg max-w-[420px]" style="color:#ffdad2;opacity:.92">
-        Telpa sajūtām un izaugsmei. Ķekavā, Nākotnes ielā 2.
-      </p>
-      <p class="fade-3 mt-2 italic text-sm max-w-[420px]" style="color:white;opacity:.75">
-        Vieta, kur miers satiekas ar atklājumiem.
-      </p>
-
-      <!-- Trust strip BEFORE CTA -->
-      <div class="fade-3 mt-5 flex flex-wrap gap-x-5 gap-y-2 text-xs font-semibold" style="color:#ffb4a2">
-        <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined" style="font-size:16px">auto_awesome</span> Snoezelen metode</span>
-        <span class="inline-flex items-center gap-1.5"><span class="material-symbols-outlined" style="font-size:16px">call</span> +371 20009028</span>
-      </div>
-
-      <div class="fade-4 mt-8">
-        <span class="panel-cta inline-flex items-center gap-3 px-8 py-4 rounded-2xl text-lg font-bold shadow-xl border-2"
-              style="border-color:#ffdad2;color:#ffdad2;background:rgba(255,255,255,.05);backdrop-filter:blur(10px)">
-          Iepazīt Bimini
-          <span class="material-symbols-outlined panel-arrow">explore</span>
-        </span>
-      </div>
-    </div>
-
-    <span class="click-indicator right-ind">Iepazīt Bimini <span class="arrow material-symbols-outlined" style="font-size:14px">arrow_forward</span></span>
-  </a>
-
-</div>
-
-<script>
-  // Smooth-transition click — expand picked panel, then navigate
-  document.querySelectorAll('.panel').forEach(panel => {
-    panel.addEventListener('click', e => {
-      e.preventDefault();
-      const side = panel.dataset.side;
-      const split = document.getElementById('split');
-      split.classList.add('leaving-' + side);
-      setTimeout(() => { window.location.href = panel.getAttribute('href'); }, 700);
-    });
-  });
-
-  // Keyboard navigation (left/right arrow keys)
-  document.addEventListener('keydown', e => {
-    if (e.key === 'ArrowLeft') document.querySelector('[data-side="left"]').click();
-    if (e.key === 'ArrowRight') document.querySelector('[data-side="right"]').click();
-  });
-
-  // Language switcher (visual only for now)
-  document.querySelectorAll('.lang-switcher button').forEach(b => {
-    b.addEventListener('click', e => {
-      e.stopPropagation();
-      document.querySelectorAll('.lang-switcher button').forEach(x => x.classList.remove('active'));
-      b.classList.add('active');
-    });
-  });
-</script>
-
-<script src="/assets/app.js" defer></script>
-</body>
+    <!-- TODO: pievienot GTM ID pēc klienta sniegšanas -->
+    <!-- <script>(function(w,d,s,l,i){...})(window,document,'script','dataLayer','GTM-XXXXXXX');</script> -->
+  </head>
+  <body>
+    <!-- TODO: GTM noscript pēc ID sniegšanas -->
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
