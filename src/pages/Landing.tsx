@@ -74,9 +74,94 @@ export default function Landing() {
       <JsonLd data={organizationSchema} />
       <JsonLd data={faqSchema} />
 
-      {/* Full-screen split — no header */}
+      {/* ============================================ */}
+      {/* MOBILE — clean stacked redesign (< md)       */}
+      {/* ============================================ */}
+      <main className="md:hidden min-h-[100dvh] flex flex-col" aria-label="8kajis.lv — izvēlies savu virzienu">
+        {/* Top bar */}
+        <header className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-100">
+          <Link to="/" className="font-heading font-extrabold text-navy text-lg tracking-tight">
+            8kajis<span className="text-orange">.</span>lv
+          </Link>
+          <div className="flex items-center gap-0.5 px-1 py-0.5 rounded-full bg-gray-100" role="navigation" aria-label="Valodas izvēle">
+            {(["LV", "EN", "RU", "LT", "EE"] as const).map((lang, i) => (
+              <button
+                key={lang}
+                className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${i === 0 ? "bg-navy text-white" : "text-gray-600"}`}
+                aria-current={i === 0 ? "true" : undefined}
+              >
+                {lang}
+              </button>
+            ))}
+          </div>
+        </header>
+
+        {/* E-veikals card */}
+        <Link
+          to="/veikals"
+          className="flex-1 flex flex-col justify-between p-6 relative overflow-hidden"
+          style={{ background: "linear-gradient(135deg, #A8C5E8 0%, #6FA8D9 100%)" }}
+          aria-label="Doties uz e-veikalu"
+        >
+          <div>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/70 rounded-full text-[11px] font-bold uppercase tracking-wider text-navy mb-4">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+                <path d="M3 3h2l2.5 12h11l2.5-9H6" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="9" cy="20" r="1.5" />
+                <circle cx="18" cy="20" r="1.5" />
+              </svg>
+              E-veikals
+            </span>
+            <h2 className="font-heading font-extrabold text-navy text-3xl leading-[1.05] mb-3">
+              Attīstošas rotaļlietas
+            </h2>
+            <p className="text-navy/75 text-sm leading-snug max-w-[280px]">
+              Izglītojošas rotaļlietas bērnu attīstībai. Beleduc partneris.
+            </p>
+          </div>
+          <div className="inline-flex items-center justify-center gap-2 mt-6 px-5 py-3 rounded-full bg-orange text-[#1A0A00] font-bold text-sm shadow-lg self-start">
+            Doties uz veikalu
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+              <path d="M5 12h14m-6-7 7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+        </Link>
+
+        {/* Sensorā telpa card */}
+        <Link
+          to="/sensora-telpa"
+          className="flex-1 flex flex-col justify-between p-6 relative overflow-hidden"
+          style={{ background: "linear-gradient(135deg, #6B4FBF 0%, #4C1D95 100%)" }}
+          aria-label="Iepazīt Sensoro telpu Bimini"
+        >
+          <div>
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/15 rounded-full text-[11px] font-bold uppercase tracking-wider text-white mb-4 border border-white/25">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00E5CC" strokeWidth="2.5" aria-hidden="true">
+                <path d="M12 2 4 7v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V7l-8-5z" strokeLinejoin="round" />
+              </svg>
+              Sensorā telpa
+            </span>
+            <h2 className="font-heading font-extrabold text-white text-3xl leading-[1.05] mb-3">
+              Sensorā telpa <span className="italic font-light text-purple-200">Bimini</span>
+            </h2>
+            <p className="text-white/75 text-sm leading-snug max-w-[280px]">
+              Vieta, kur miers satiekas ar atklājumiem. Ķekavā, Nākotnes ielā 2.
+            </p>
+          </div>
+          <div className="inline-flex items-center justify-center gap-2 mt-6 px-5 py-3 rounded-full bg-white/10 border border-white/40 text-white font-bold text-sm self-start">
+            Iepazīt Bimini
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+              <path d="M5 12h14m-6-7 7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </div>
+        </Link>
+      </main>
+
+      {/* ============================================ */}
+      {/* DESKTOP — original split-screen with octopus  */}
+      {/* ============================================ */}
       <main
-        className="flex flex-col md:flex-row min-h-[100dvh] overflow-hidden"
+        className="hidden md:flex md:flex-row min-h-[100dvh] overflow-hidden"
         aria-label="8kajis.lv — izvēlies savu virzienu"
       >
         {/* Language switcher — fixed overlay */}
