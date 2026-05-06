@@ -4,6 +4,8 @@ import { motion, useReducedMotion } from "framer-motion";
 import SEO from "@/components/SEO";
 import JsonLd, { organizationSchema, faqSchema } from "@/components/JsonLd";
 import OctopusMascot from "@/components/OctopusMascot";
+import { DEMO_PRODUCTS } from "@/lib/products";
+import { useCartStore } from "@/store/cartStore";
 
 // Sparkle component for mesh effect
 function Sparkle({
@@ -33,6 +35,251 @@ function Sparkle({
       }}
       aria-hidden="true"
     />
+  );
+}
+
+// ============================================
+// MobileLanding — pareizs mobile e-com landing
+// ============================================
+function MobileLanding() {
+  const totalItems = useCartStore((s) => s.totalItems());
+  const openCart = useCartStore((s) => s.openCart);
+  const featured = DEMO_PRODUCTS.slice(0, 4);
+  const categories = [
+    { slug: "sensorie", label: "Sensorie", color: "from-emerald-100 to-emerald-50", text: "text-emerald-700" },
+    { slug: "logikas", label: "Loģikas", color: "from-blue-100 to-blue-50", text: "text-blue-700" },
+    { slug: "radosie", label: "Radošie", color: "from-amber-100 to-amber-50", text: "text-amber-700" },
+    { slug: "kustibu", label: "Kustību", color: "from-rose-100 to-rose-50", text: "text-rose-700" },
+  ];
+
+  return (
+    <div className="md:hidden bg-white">
+      {/* Sticky header */}
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-100">
+        <div className="flex items-center justify-between px-4 h-14">
+          <Link to="/" className="flex items-center gap-2 font-heading font-extrabold text-navy text-lg tracking-tight">
+            <OctopusMascot variant="mini" />
+            <span>8kajis<span className="text-orange">.</span>lv</span>
+          </Link>
+          <div className="flex items-center gap-1">
+            <button
+              type="button"
+              onClick={openCart}
+              className="relative p-2 text-navy"
+              aria-label="Atvērt grozu"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <path d="M3 3h2l2.5 12h11l2.5-9H6" strokeLinecap="round" strokeLinejoin="round" />
+                <circle cx="9" cy="20" r="1.5" />
+                <circle cx="18" cy="20" r="1.5" />
+              </svg>
+              {totalItems > 0 && (
+                <span className="absolute -top-0.5 -right-0.5 w-4 h-4 rounded-full bg-orange text-[10px] font-bold text-[#1A0A00] flex items-center justify-center">
+                  {totalItems}
+                </span>
+              )}
+            </button>
+            <Link to="/veikals" className="p-2 text-navy" aria-label="Meklēt produktus">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <circle cx="11" cy="11" r="7" />
+                <path d="m21 21-4.3-4.3" strokeLinecap="round" />
+              </svg>
+            </Link>
+          </div>
+        </div>
+        {/* Quick nav */}
+        <nav className="flex gap-1 px-4 pb-2 overflow-x-auto" aria-label="Galvenā navigācija">
+          {[
+            { to: "/veikals", label: "Veikals" },
+            { to: "/sensora-telpa", label: "Sensorā telpa" },
+            { to: "/par-mums", label: "Par mums" },
+            { to: "/kontakti", label: "Kontakti" },
+          ].map((l) => (
+            <Link
+              key={l.to}
+              to={l.to}
+              className="px-3 py-1.5 rounded-full text-xs font-semibold text-navy/70 hover:bg-gray-100 whitespace-nowrap"
+            >
+              {l.label}
+            </Link>
+          ))}
+        </nav>
+      </header>
+
+      {/* Hero */}
+      <section
+        className="relative px-5 pt-8 pb-10 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #DCEAF7 0%, #C8DBED 100%)" }}
+      >
+        <div className="relative z-10 flex flex-col items-center text-center">
+          <OctopusMascot size={110} variant="landing" />
+          <span className="mt-3 inline-flex items-center gap-1.5 px-3 py-1 bg-white/70 rounded-full text-[11px] font-bold uppercase tracking-wider text-navy">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            Beleduc oficiālais partneris
+          </span>
+          <h1 className="mt-4 font-heading font-extrabold text-navy text-[28px] leading-[1.1] max-w-[300px]">
+            Attīstošas rotaļlietas, kas saved teoriju ar prieku
+          </h1>
+          <p className="mt-3 text-navy/70 text-sm leading-snug max-w-[300px]">
+            Izglītojošas rotaļlietas bērniem un sensorā telpa Bimini Ķekavā.
+          </p>
+          <Link
+            to="/veikals"
+            className="mt-6 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-full bg-orange text-[#1A0A00] font-bold text-sm shadow-lg w-full max-w-[280px]"
+          >
+            Sākt iepirkties
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+              <path d="M5 12h14m-6-7 7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </Link>
+          <Link
+            to="/sensora-telpa"
+            className="mt-2 inline-flex items-center gap-1 px-4 py-2 text-sm font-semibold text-navy/70"
+          >
+            vai apmeklē Sensoro telpu →
+          </Link>
+        </div>
+      </section>
+
+      {/* Trust strip */}
+      <section className="px-5 py-5 bg-white border-b border-gray-100">
+        <div className="grid grid-cols-3 gap-3 text-center">
+          {[
+            { title: "Bezmaksas piegāde", desc: "Virs 100 €" },
+            { title: "14 dienu atgriešana", desc: "Bez jautājumiem" },
+            { title: "Droša apmaksa", desc: "SSL & Stripe" },
+          ].map((b) => (
+            <div key={b.title}>
+              <p className="text-[11px] font-bold text-navy leading-tight">{b.title}</p>
+              <p className="text-[10px] text-navy/55 mt-0.5">{b.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Featured products */}
+      <section className="py-6 bg-gray-50/60" aria-labelledby="featured-heading">
+        <div className="flex items-center justify-between px-5 mb-4">
+          <h2 id="featured-heading" className="font-heading font-extrabold text-navy text-lg">
+            Populārākie produkti
+          </h2>
+          <Link to="/veikals" className="text-xs font-semibold text-navy/60">
+            Visi →
+          </Link>
+        </div>
+        <div className="flex gap-3 px-5 overflow-x-auto pb-2 -mb-2 snap-x snap-mandatory" style={{ scrollbarWidth: "none" }}>
+          {featured.map((p) => (
+            <Link
+              key={p.id}
+              to={`/veikals/${p.slug}`}
+              className="flex-shrink-0 w-[160px] bg-white rounded-2xl border border-gray-100 overflow-hidden snap-start"
+            >
+              <div className="aspect-square bg-gray-100 relative">
+                <img src={p.images[0]} alt={p.name} loading="lazy" className="w-full h-full object-cover" />
+                {p.badge && (
+                  <span className="absolute top-2 left-2 px-2 py-0.5 bg-orange text-[#1A0A00] text-[9px] font-bold rounded-full">
+                    {p.badge}
+                  </span>
+                )}
+              </div>
+              <div className="p-3">
+                <p className="text-[12px] font-semibold text-navy line-clamp-2 leading-tight min-h-[32px]">
+                  {p.name}
+                </p>
+                <p className="mt-2 text-sm font-extrabold text-navy">{p.price.toFixed(2)} €</p>
+              </div>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* Sensorā telpa promo */}
+      <section className="px-5 py-6">
+        <Link
+          to="/sensora-telpa"
+          className="block relative rounded-3xl overflow-hidden p-6"
+          style={{ background: "linear-gradient(135deg, #4C1D95 0%, #2D1065 100%)" }}
+        >
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/15 rounded-full text-[10px] font-bold uppercase tracking-wider text-white border border-white/25">
+            <span className="w-1.5 h-1.5 rounded-full" style={{ background: "#00E5CC" }} />
+            Sensorā telpa Bimini
+          </span>
+          <h3 className="mt-3 font-heading font-extrabold text-white text-2xl leading-tight">
+            Vieta, kur miers satiekas ar atklājumiem
+          </h3>
+          <p className="mt-2 text-white/75 text-sm leading-snug">
+            Snoezelen metodoloģija. Ķekavā, Nākotnes ielā 2.
+          </p>
+          <span className="mt-5 inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/10 border border-white/40 text-white font-bold text-sm">
+            Iepazīt Bimini
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+              <path d="M5 12h14m-6-7 7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+          </span>
+        </Link>
+      </section>
+
+      {/* Categories */}
+      <section className="px-5 pb-6" aria-labelledby="cat-heading">
+        <h2 id="cat-heading" className="font-heading font-extrabold text-navy text-lg mb-4">
+          Kategorijas
+        </h2>
+        <div className="grid grid-cols-2 gap-3">
+          {categories.map((c) => (
+            <Link
+              key={c.slug}
+              to={`/veikals?cat=${c.slug}`}
+              className={`bg-gradient-to-br ${c.color} rounded-2xl p-5 aspect-[1.2] flex flex-col justify-between border border-gray-100`}
+            >
+              <span className={`font-heading font-extrabold text-base ${c.text}`}>{c.label}</span>
+              <span className={`text-xs font-semibold ${c.text} opacity-70`}>Skatīt →</span>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* CTA banner */}
+      <section className="px-5 pb-8">
+        <div className="bg-navy rounded-3xl p-6 text-center">
+          <p className="text-white/80 text-xs font-semibold uppercase tracking-widest mb-2">
+            Vajag konsultāciju?
+          </p>
+          <p className="font-heading font-extrabold text-white text-xl mb-4 leading-tight">
+            Palīdzēsim izvēlēties pareizo
+          </p>
+          <a
+            href="tel:+37120009028"
+            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-orange text-[#1A0A00] font-bold text-sm"
+          >
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            +371 20009028
+          </a>
+        </div>
+      </section>
+
+      {/* Footer mini */}
+      <footer className="px-5 py-6 border-t border-gray-100 bg-gray-50">
+        <div className="flex items-center justify-between text-xs text-navy/50 mb-4">
+          <span>© 2026 8kajis.lv</span>
+          <Link to="/privatuma-politika" className="font-semibold">
+            Privātuma politika
+          </Link>
+        </div>
+        <div className="flex items-center gap-1 px-1 py-0.5 rounded-full bg-white border border-gray-200 self-start w-fit" role="navigation" aria-label="Valodas izvēle">
+          {(["LV", "EN", "RU", "LT", "EE"] as const).map((lang, i) => (
+            <button
+              key={lang}
+              className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${i === 0 ? "bg-navy text-white" : "text-gray-500"}`}
+              aria-current={i === 0 ? "true" : undefined}
+            >
+              {lang}
+            </button>
+          ))}
+        </div>
+      </footer>
+    </div>
   );
 }
 
@@ -75,87 +322,9 @@ export default function Landing() {
       <JsonLd data={faqSchema} />
 
       {/* ============================================ */}
-      {/* MOBILE — clean stacked redesign (< md)       */}
+      {/* MOBILE — proper e-com landing (< md)         */}
       {/* ============================================ */}
-      <main className="md:hidden min-h-[100dvh] flex flex-col" aria-label="8kajis.lv — izvēlies savu virzienu">
-        {/* Top bar */}
-        <header className="flex items-center justify-between px-4 py-3 bg-white border-b border-gray-100">
-          <Link to="/" className="font-heading font-extrabold text-navy text-lg tracking-tight">
-            8kajis<span className="text-orange">.</span>lv
-          </Link>
-          <div className="flex items-center gap-0.5 px-1 py-0.5 rounded-full bg-gray-100" role="navigation" aria-label="Valodas izvēle">
-            {(["LV", "EN", "RU", "LT", "EE"] as const).map((lang, i) => (
-              <button
-                key={lang}
-                className={`px-1.5 py-0.5 rounded-full text-[10px] font-bold ${i === 0 ? "bg-navy text-white" : "text-gray-600"}`}
-                aria-current={i === 0 ? "true" : undefined}
-              >
-                {lang}
-              </button>
-            ))}
-          </div>
-        </header>
-
-        {/* E-veikals card */}
-        <Link
-          to="/veikals"
-          className="flex-1 flex flex-col justify-between p-6 relative overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #A8C5E8 0%, #6FA8D9 100%)" }}
-          aria-label="Doties uz e-veikalu"
-        >
-          <div>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/70 rounded-full text-[11px] font-bold uppercase tracking-wider text-navy mb-4">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-                <path d="M3 3h2l2.5 12h11l2.5-9H6" strokeLinecap="round" strokeLinejoin="round" />
-                <circle cx="9" cy="20" r="1.5" />
-                <circle cx="18" cy="20" r="1.5" />
-              </svg>
-              E-veikals
-            </span>
-            <h2 className="font-heading font-extrabold text-navy text-3xl leading-[1.05] mb-3">
-              Attīstošas rotaļlietas
-            </h2>
-            <p className="text-navy/75 text-sm leading-snug max-w-[280px]">
-              Izglītojošas rotaļlietas bērnu attīstībai. Beleduc partneris.
-            </p>
-          </div>
-          <div className="inline-flex items-center justify-center gap-2 mt-6 px-5 py-3 rounded-full bg-orange text-[#1A0A00] font-bold text-sm shadow-lg self-start">
-            Doties uz veikalu
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-              <path d="M5 12h14m-6-7 7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-        </Link>
-
-        {/* Sensorā telpa card */}
-        <Link
-          to="/sensora-telpa"
-          className="flex-1 flex flex-col justify-between p-6 relative overflow-hidden"
-          style={{ background: "linear-gradient(135deg, #6B4FBF 0%, #4C1D95 100%)" }}
-          aria-label="Iepazīt Sensoro telpu Bimini"
-        >
-          <div>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-white/15 rounded-full text-[11px] font-bold uppercase tracking-wider text-white mb-4 border border-white/25">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#00E5CC" strokeWidth="2.5" aria-hidden="true">
-                <path d="M12 2 4 7v6c0 5 3.4 9 8 11 4.6-2 8-6 8-11V7l-8-5z" strokeLinejoin="round" />
-              </svg>
-              Sensorā telpa
-            </span>
-            <h2 className="font-heading font-extrabold text-white text-3xl leading-[1.05] mb-3">
-              Sensorā telpa <span className="italic font-light text-purple-200">Bimini</span>
-            </h2>
-            <p className="text-white/75 text-sm leading-snug max-w-[280px]">
-              Vieta, kur miers satiekas ar atklājumiem. Ķekavā, Nākotnes ielā 2.
-            </p>
-          </div>
-          <div className="inline-flex items-center justify-center gap-2 mt-6 px-5 py-3 rounded-full bg-white/10 border border-white/40 text-white font-bold text-sm self-start">
-            Iepazīt Bimini
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" aria-hidden="true">
-              <path d="M5 12h14m-6-7 7 7-7 7" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </div>
-        </Link>
-      </main>
+      <MobileLanding />
 
       {/* ============================================ */}
       {/* DESKTOP — original split-screen with octopus  */}
