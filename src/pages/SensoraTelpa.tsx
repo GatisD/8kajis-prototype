@@ -35,7 +35,7 @@ const SERVICES = [
     ),
     color: "#9B7EDE",
     title: "Telpu iekārtošana",
-    desc: "Pilns sensorās telpas dizains un iekārtošana jūsu iestādē — no plānošanas līdz nodošanai ekspluatācijā.",
+    desc: "Pilns sensorās telpas dizains un iekārtošana — no plānošanas līdz nodošanai.",
   },
   {
     icon: (
@@ -46,7 +46,7 @@ const SERVICES = [
     ),
     color: "#00E5CC",
     title: "Aprīkojums",
-    desc: "Snoezelen aprīkojuma piegāde — optiskās šķiedras, projektorpaneles, taktilās virsmas, relaksācijas elementi.",
+    desc: "Snoezelen aprīkojums: optiskās šķiedras, projektorpaneles, taktilās virsmas.",
   },
   {
     icon: (
@@ -58,7 +58,7 @@ const SERVICES = [
     ),
     color: "#F59E0B",
     title: "Konsultācijas",
-    desc: "Ekspertu konsultācijas par Snoezelen metodoloģiju, personāla apmācība un ilgtermiņa atbalsts.",
+    desc: "Ekspertu konsultācijas par metodoloģiju un personāla apmācība.",
   },
 ];
 
@@ -316,7 +316,7 @@ export default function SensoraTelpa() {
                     >
                       {card.title}
                     </h3>
-                    <p className="text-sm leading-relaxed" style={{ color: "#FFDAD2", opacity: 0.65 }}>
+                    <p className="text-sm leading-relaxed" style={{ color: "#E5E7EB" }}>
                       {card.desc}
                     </p>
                   </div>
@@ -346,7 +346,7 @@ export default function SensoraTelpa() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {SERVICES.map((svc, i) => (
                 <FadeInOnScroll key={svc.title} delay={i * 0.12}>
-                  <div className="text-center">
+                  <div className="text-center max-w-[320px] mx-auto">
                     <div
                       className="inline-flex items-center justify-center w-16 h-16 rounded-2xl mb-5"
                       style={{ background: `${svc.color}20`, color: svc.color }}
@@ -359,7 +359,7 @@ export default function SensoraTelpa() {
                     >
                       {svc.title}
                     </h3>
-                    <p className="text-sm leading-relaxed" style={{ color: "#FFDAD2", opacity: 0.65 }}>
+                    <p className="text-sm leading-relaxed min-h-[60px]" style={{ color: "#E5E7EB" }}>
                       {svc.desc}
                     </p>
                   </div>

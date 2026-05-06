@@ -271,9 +271,9 @@ export default function Landing() {
             </motion.div>
           </Link>
 
-          {/* Toy image decoration — bottom right */}
+          {/* Toy image decoration — bottom right (lifted to avoid CTA strip overlap) */}
           <div
-            className="absolute right-[-2%] bottom-[-2%] w-[min(38%,340px)] pointer-events-none"
+            className="absolute right-[-2%] bottom-[12%] w-[min(34%,300px)] pointer-events-none"
             style={{ aspectRatio: "1/1" }}
             aria-hidden="true"
           >
@@ -289,10 +289,10 @@ export default function Landing() {
             />
           </div>
 
-          {/* Click indicator */}
+          {/* Click indicator — left-aligned to avoid overlap with central scroll cue */}
           <span
-            className="absolute bottom-8 left-1/2 chevron-bounce text-xs font-bold tracking-widest uppercase text-navy/60 pointer-events-none select-none"
-            style={{ transform: "translateX(-50%)", letterSpacing: "0.18em" }}
+            className="absolute bottom-20 left-8 md:left-12 lg:left-16 chevron-bounce text-xs font-bold tracking-widest uppercase text-navy/70 pointer-events-none select-none"
+            style={{ letterSpacing: "0.18em" }}
             aria-hidden="true"
           >
             Izvēlies veikalu ›
@@ -504,13 +504,12 @@ export default function Landing() {
             </motion.div>
           </Link>
 
-          {/* Click indicator */}
+          {/* Click indicator — right-aligned to avoid overlap with central scroll cue */}
           <span
-            className="absolute bottom-8 left-1/2 chevron-bounce text-xs font-bold tracking-widest uppercase pointer-events-none select-none"
+            className="absolute bottom-20 right-8 md:right-12 lg:right-16 chevron-bounce text-xs font-bold tracking-widest uppercase pointer-events-none select-none"
             style={{
-              transform: "translateX(-50%)",
               letterSpacing: "0.18em",
-              color: "rgba(255,218,210,0.6)",
+              color: "rgba(255,218,210,0.7)",
             }}
             aria-hidden="true"
           >
@@ -520,14 +519,17 @@ export default function Landing() {
 
         {/* ===== BOTTOM CENTER — choose direction ===== */}
         <div
-          className="absolute bottom-6 left-1/2 z-20 pointer-events-none text-center"
-          style={{ transform: "translateX(-50%)" }}
+          className="absolute bottom-6 left-1/2 z-40 pointer-events-none text-center px-4 py-2 rounded-full backdrop-blur-md"
+          style={{
+            transform: "translateX(-50%)",
+            background: "rgba(0,0,0,0.25)",
+          }}
           aria-hidden="true"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/40">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/80">
             Izvēlies savu virzienu
           </p>
-          <div className="chevron-bounce mt-2 text-white/40 text-center">
+          <div className="chevron-bounce mt-1 text-white/80 text-center">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" className="mx-auto" aria-hidden="true">
               <polyline points="6 9 12 15 18 9"/>
             </svg>

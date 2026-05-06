@@ -17,9 +17,9 @@ export default function CartDrawer() {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
+          {/* Backdrop — sits above header (z-50), covers full viewport */}
           <motion.div
-            className="fixed inset-0 z-50 bg-black/50"
+            className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-[2px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -28,9 +28,9 @@ export default function CartDrawer() {
             aria-hidden="true"
           />
 
-          {/* Drawer */}
+          {/* Drawer — solid bg, layered above backdrop and any page chrome */}
           <motion.aside
-            className="fixed right-0 top-0 bottom-0 z-50 w-full max-w-md bg-white flex flex-col shadow-2xl"
+            className="fixed right-0 top-0 bottom-0 z-[70] w-full max-w-md bg-white flex flex-col shadow-2xl"
             initial={{ x: "100%" }}
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
@@ -43,7 +43,7 @@ export default function CartDrawer() {
             aria-modal="true"
           >
             {/* Header */}
-            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
+            <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100 bg-white relative z-10">
               <h2 className="font-heading font-700 text-lg text-navy">
                 Iepirkumu grozs
               </h2>
